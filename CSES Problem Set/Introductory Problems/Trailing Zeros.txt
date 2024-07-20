@@ -1,0 +1,38 @@
+</> Tóm tắt yêu cầu
+    - Đếm số lượng số 0 tận cùng của n!.
+
+</> Cách giải
+    - Số 0 tận cùng được tạo ra vì n! có 10 là ước.
+    - Vì 10 = 2 x 5 nên số lượng chữ số 0 tận cùng phụ thuộc vào số lượng cặp 2 và 5 trong các thừa số của n!.
+    - Số lượng xuất hiện của 2 thường hiều hơn 5 nên bài toán quy về việc đếm số lần xuất hiện của 5.
+    - Thực hiện chia n cho 5, rồi chia kết quả đó cho 5, và tiếp tục cho đến khi không thể chia nữa.
+
+</> Code C++
+    #include <iostream>
+    using namespace std;
+
+    int main() {
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        
+        int n, ans = 0;
+        cin >> n;
+        
+        while (n >= 5) {
+            ans += n/5;
+            n /= 5;
+        }
+        
+        cout << ans;
+        return 0;
+    }
+
+</> Code Python
+    n = int(input())
+    ans = 0
+
+    while n >= 5:
+        ans += n//5
+        n //= 5
+
+    print(ans)
