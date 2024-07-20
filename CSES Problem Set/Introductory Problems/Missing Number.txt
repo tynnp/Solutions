@@ -1,0 +1,87 @@
+</> Tóm tắt yêu cầu
+    - Cho số nguyên dương n.
+    - Cho dãy số nguyên có n - 1 số.
+    - Tìm số còn thiếu trong dãy từ 1 đến n.
+
+</> Cách giải thứ nhất: Mảng đánh dấu
+    - Khai báo mảng có 2.10^5 + 1 phần tử đều có giá trị 0.
+    - Số nào đầu vào đã có thì phần tử tại chỉ số đó có giá trị 1.
+    - Chỉ số của phần tử có giá trị 0 còn lại trong đoạn từ 1 đến n là số cần tìm.
+
+</> Cách giải thứ hai: Tính tổng dãy
+    - Tính tổng dãy số theo công thức n*(n+1) / 2.
+    - Lần lượt trừ cho các số đầu vào đã cho.
+    - Kết quả còn lại cuối cùng chính là số cần tìm.
+    - Vì n đến 2.10^5 nếu tính tổng theo công thức mà sử dụng kiểu int sẽ bị tràn số.
+
+</> Code cách giải thứ nhất bằng C++
+    #include <iostream>
+    using namespace std;
+
+    const int SIZE = 2e5 + 1;
+    int a[SIZE];
+
+    int main() {
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+
+        int x, n;
+        cin >> n;
+        
+        for (int i = 1; i < n; i++) {
+            cin >> x;
+            a[x] = 1;
+        }
+        
+        for (int i = 1; i <= n; i++) {
+            if (!a[i]) {
+                cout << i;
+                break;
+            }
+        }
+        
+        return 0;
+    }
+
+</> Code cách giải thứ hai bằng C++
+    #include <iostream>
+    using namespace std;
+    
+    int main() {
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+
+        long long x, n, ans;
+        cin >> n;
+        
+        ans = n*(n+1) / 2;
+        for (int i = 1; i < n; i++) {
+            cin >> x;
+            ans -= x;
+        }
+        
+        cout << ans;
+        return 0;
+    }
+
+</> Code cách giải thứ nhất bằng Python
+    n = int(input())
+    lst = list(map(int,input().split()))
+    a = [0] * (2*10**5 + 1)
+
+    for i in lst:
+        a[i] = 1
+        
+    for i in range(1, n+1):
+        if a[i] == 0:
+            print(i)
+            break
+
+</> Code cách giải thứ hai bằng Python
+    n = int(input())
+    lst = list(map(int,input().split()))
+    ans = n*(n+1) // 2
+
+    for i in lst:
+        ans -= i
+    print(ans)
