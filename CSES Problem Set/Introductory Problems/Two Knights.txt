@@ -1,0 +1,50 @@
+</> Tóm tắt yêu cầu
+    - Cho số nguyên n.
+    - Tính số cách đặt 2 quân mã trên bàn cờ k x k sao cho chúng không tấn cônn nhau (với k = 1..n).
+
+</> Cách giải
+    - Tính số cách đặt của 2 quân mã.
+    - Trừ số cách 2 quân mã tấn công lẫn nhau.
+
+    - Số cách đặt 2 quân mã: 
+        + Với bàn cờ k x k thì quân mã thứ nhất có k^2 cách đặt.
+        + Quân mã thứ hai có k^2 - 1 cách đặt.
+        + Trừ vị trí trùng nhau thì tổng cách đặt là k^2 * (k^2 - 1) / 2.
+
+    - Số cách 2 quân mã tấn công nhau.
+        + Quân mã đi theo hướng chữ L trong bàn cờ.
+        + Trong 1 ô chữ nhật 2x3 có 2 cặp ô có thể tấn công lẫn nhau.
+        + Tương tự với ô chữ nhật 3x2 cũng có 2 cặp ô có thể tấn công lẫn nhau.
+        + Vì bàn cờ hình vuông nên số ô 2x3 bằng với số ô 3x2.
+        + Vậy số cách 2 quân mã tấn công nhau là ô chữ nhật (2x3) x 4.
+
+    - Cách tính ô chữ nhật 2x3
+        + Với bàn cờ k x k (k >= 2) ta có thể đặt k-1 hình chữ nhật có chiều dài bằng 2.
+        + Với bàn cờ k x k (k >= 3) ta có thể đặt k-2 hình chữ nhật có chiều rộng bằng 3.
+        + Vậy tổng số hình chữ nhật độ dài 2x3 là (k-1) * (k-2) hình.
+
+    - Công thức cuối cùng: ans = (k^2 * (k^2 - 1) / 2) - (4 * (k-1) * (k-2)).
+    - Với n lên đến 10^4 thì kết quả có thể rất lớn, lưu ý tràn số với C++.
+
+</> Code C++
+    #include <iostream>
+    using namespace std;
+
+    int main() {
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        
+        int n;
+        cin >> n;
+        
+        for (long long k = 1; k <= n; k++) 
+            cout << (k*k * (k*k - 1) / 2) - (4 * (k-1) * (k-2)) << '\n';
+        
+        return 0;
+    }
+
+</> Code Python
+    n = int(input())
+
+    for k in range(1, n+1):
+        print((k*k * (k*k - 1) // 2) - (4 * (k-1) * (k-2)))
