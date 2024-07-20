@@ -1,0 +1,39 @@
+</> Tóm tắt yêu cầu 
+    - Nhập vào 1 số nguyên dương n.
+    - Nếu n là số chẵn thì n = n / 2.
+    - Nếu n là số lẻ thì n = 3*n + 1.
+    - In các bước ra màn hình.
+
+</> Cách giải 
+    - Sử dụng vòng lập while thực hiện các bước đến khi nào n = 1 thì dừng.
+    - Lưu ý điều kiện, trường hợp n = 1 -> 4 -> 2 -> 1 -> ... lặp vô hạn.
+    - Đối với C++, giới hạn đầu vào có n đến 10^6 nếu sử dụng kiểu int sẽ bị tràn số.
+
+</> Code C++
+    #include <iostream>
+    using namespace std;
+
+    int main() {
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+    
+        long long n;
+        cin >> n;
+        
+        while (n > 1) {
+            cout << n << " ";
+            n = n & 1 ? 3*n + 1 : n >> 1;
+        }
+        
+        cout << 1;
+        return 0;
+    }
+
+</> Code Python
+    n = int(input())
+
+    while n > 1:
+        print(n, end=" ")
+        n = 3*n + 1 if n & 1 else n >> 1 
+
+    print(1)
