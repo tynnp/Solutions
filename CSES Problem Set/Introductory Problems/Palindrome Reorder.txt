@@ -1,0 +1,44 @@
+</> Tóm tắt yêu cầu
+    - Cho một chuỗi ký tự.
+    - Sắp xếp lại sao cho chuỗi đó đối xứng.
+
+</> Cách giải
+    - Đếm số lần xuất hiện của từng ký tự.
+    - Nếu có 2 ký tự có số lần xuất hiện lẻ -> "NO SOLUTION".
+    - Giả xử ký tự x1, x2,... có số lần xuất hiện là k1, k2,... -> chèn k(i) ký tự x(i) vào giữa chuỗi kết quả.
+    - Nếu có k lẻ thì chèn sau cùng.
+
+</> Code C++
+    #include <iostream>
+    #include <map>
+    using namespace std;
+
+    int main() {
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        
+        string s, ans;
+        int odd = 0;
+        map<char, int> m;
+        pair<char, int> p;
+        
+        cin >> s;
+        for (char &c : s) m[c]++;
+        
+        for (auto &x : m) {
+            if (x.second % 2) {
+                odd++;
+                p = x;
+            } else 
+                ans.insert(ans.size()/2, x.second, x.first);
+                
+            if (odd > 1) {
+                cout << "NO SOLUTION";
+                return 0;
+            }
+        }
+        
+        if (odd) ans.insert(ans.size()/2, p.second, p.first);
+        cout << ans;
+        return 0;
+    }
