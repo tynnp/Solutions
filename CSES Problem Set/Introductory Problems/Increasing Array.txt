@@ -1,0 +1,49 @@
+</> Tóm tắt yêu cầu
+    - Cho một mảng các số nguyên.
+    - Sửa mảng thành mảng tăng dần (phần tử đứng sau >= phần tử đứng trước).
+    - Mỗi bước có thể tăng phần tử bất kì lên 1 đơn vị.
+    - Tìm số bước tối thiểu.
+
+</> Cách giải
+    - Số bước ans = 0.
+    - Lần lượt duyệt qua mảng a bắt đầu từ i = 1 đến n-1.
+        + Nếu a[i-1] > a[i] (phần tử sau nhỏ hơn) thì cập nhật số bước ans += a[i-1] - a[i].
+        + Gán a[i] = max(a[i-1], a[i]) đảm bảo a[i] là phần tử lớn nhất trong dãy tăng a[1..i].
+    - Kết quả cần tìm là ans.
+    - Giới hạn x đến 10^9, lưu ý tràn số đối với C++.
+
+</> Code C++
+    #include <iostream>
+    using namespace std;
+    
+    int main() {
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        
+        long long n, ans = 0;
+        cin >> n;
+        
+        long long a[n];
+        for (auto &x : a) cin >> x;
+        
+        for (int i = 1; i < n; i++) {
+            if (a[i-1] > a[i]) 
+                ans += a[i-1] - a[i];
+            a[i] = max(a[i-1], a[i]);
+        }
+        
+        cout << ans;
+        return 0;
+    }
+
+</> Code Python
+    n = int(input())
+    lst = list(map(int, input().split()))
+    ans = 0
+
+    for i in range(1, len(lst)):
+        if lst[i-1] > lst[i]:
+            ans += lst[i-1] - lst[i]
+        lst[i] = max(lst[i-1], lst[i])
+
+    print(ans)
