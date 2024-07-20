@@ -1,0 +1,42 @@
+</> Tóm tắt yêu cầu
+    - Có 2 đống a và b xu.
+    - Mỗi lượt có thể bỏ một xu đống bên trái và hai xu đống bên phải hoặc ngược lại.
+    - Xác định xem có thể làm rỗng hai đống hay không.
+    - Có nhiều bộ truy vấn.
+
+</> Cách giải
+    - Xem như chỉ có 1 đống lớn gồm a + b xu.
+    - Mỗi lượt giảm bớt 3 xu -> a + b phải chia hết cho 3 thì mới có thể rỗng.
+    - Đảm bảo đống lớn hơn không chênh lệch quá 2 lần đống nhỏ.
+
+</> Code C++
+    #include <iostream>
+    using namespace std;
+
+    int main() {
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        
+        int t, a, b;
+        cin >> t;
+        
+        while (t--) {
+            cin >> a >> b;
+            if ((a + b) % 3 == 0 && 2*min(a, b) >= max(a, b))
+                cout << "YES\n";
+            else 
+                cout << "NO\n";
+        }
+        
+        return 0;
+    }
+
+</> Code Python
+    t = int(input())
+
+    for i in range(t):
+        a, b = map(int, input().split())
+        if (a + b) % 3 == 0 and 2*min(a, b) >= max(a, b):
+            print("YES")
+        else:
+            print("NO")
