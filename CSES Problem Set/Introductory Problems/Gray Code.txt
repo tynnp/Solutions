@@ -1,0 +1,53 @@
+</> Tóm tắt yêu cầu
+    - Tạo một danh sách Gray code với tất cả các chuỗi dài n bit.
+    - Trong đó hai chuỗi liên tiếp khác nhau đúng 1 bit.
+
+</> Cách giải
+    - Khởi tạo danh sách kết quả chứa chuỗi rỗng.
+    - Kiểm tra độ dài chuỗi, nếu <= n thì thực hiện thêm vào danh sách kết quả các chuỗi đang có theo thứ tự danh sách ngược lại.
+    - Thêm 0 vào chuỗi nửa đầu danh sách, thêm 1 vào chuỗi nửa cuối danh sách.
+    - Thực hiện kiểm tra độ dài chuỗi và cứ tiếp tục đến khi độ dài chuỗi = n.
+
+</> Code C++
+    #include <iostream>
+    #include <vector>
+    using namespace std;
+
+    int main() {
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+    
+        int n, size;
+        vector<string> ans;
+        ans.push_back("");
+        cin >> n;
+        
+        for (int i = 1; i <= n; i++) {
+            size = ans.size();
+            for (int j = size-1; j >= 0; j--) 
+                ans.push_back(ans[j]);
+                
+            for (int j = 0; j < 2*size; j++) 
+                ans[j] += j < size ? '0' : '1';
+        }
+        
+        for (string s : ans)
+            cout << s << '\n';
+        return 0;
+    }
+
+</> Code Python
+    n = int(input())
+    size = 0
+    ans = [""]
+
+    for i in range(n):
+        size = len(ans)
+        for j in range(size-1, -1, -1):
+            ans.append(ans[j])
+        
+        for j in range(0, 2*size):
+            ans[j] += '0' if j < size else '1'
+
+    for s in ans:
+        print(s)
