@@ -1,6 +1,6 @@
 </> Tóm tắt yêu cầu
     - Cho số nguyên n.
-    - Tính số cách đặt 2 quân mã trên bàn cờ k x k sao cho chúng không tấn cônn nhau (với k = 1..n).
+    - Tính số cách đặt 2 quân mã trên bàn cờ k x k sao cho chúng không tấn công nhau (với k = 1..n).
 
 </> Cách giải
     - Tính số cách đặt của 2 quân mã.
@@ -19,8 +19,8 @@
         + Vậy số cách 2 quân mã tấn công nhau là ô chữ nhật (2x3) x 4.
 
     - Cách tính ô chữ nhật 2x3
-        + Với bàn cờ k x k (k >= 2) ta có thể đặt k-1 hình chữ nhật có chiều dài bằng 2.
-        + Với bàn cờ k x k (k >= 3) ta có thể đặt k-2 hình chữ nhật có chiều rộng bằng 3.
+        + Với bàn cờ k x k ta có thể đặt k-1 hình chữ nhật có chiều dài bằng 2.
+        + Với bàn cờ k x k ta có thể đặt k-2 hình chữ nhật có chiều rộng bằng 3.
         + Vậy tổng số hình chữ nhật độ dài 2x3 là (k-1) * (k-2) hình.
 
     - Công thức cuối cùng: ans = (k^2 * (k^2 - 1) / 2) - (4 * (k-1) * (k-2)).
