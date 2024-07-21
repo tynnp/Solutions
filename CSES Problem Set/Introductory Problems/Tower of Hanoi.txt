@@ -1,0 +1,53 @@
+</> Tóm tắt yêu cầu
+    - Bài toán Tháp Hà Nội.
+    - Có 3 cọc trái (left), giữa (middle) và phải (right).
+    - Tất cả các đĩa đều ở cọc trái, được sắp xếp theo thứ tự tăng dần từ trên xuống dưới.
+    - Mục tiêu là chuyển tất cả các đĩa từ cọc trái sang cọc phải, sử dụng cọc giữa làm trung gian.
+    - Quy tắc:
+        + Chỉ di chuyển một đĩa trên cùng của một cọc tại mỗi lần.
+        + Không được đặt đĩa lớn hơn lên trên đĩa nhỏ hơn.
+    - In ra số lượng bước di chuyển ít nhất.
+
+</> Cách giải
+    - Chuyển n-1 đĩa từ cọc trái sang cọc giữa, sử dụng cọc phải làm trung gian.
+    - Chuyển đĩa lớn nhất từ cọc trái sang cọc phải.
+    - Chuyển n-1 đĩa từ cọc giữa sang cọc phải, sử dụng cọc trái làm trung gian.
+
+</> Code C++
+    #include <iostream>
+    using namespace std;
+
+    void move(int n, int a, int b, int c) {
+        if (n == 1) {
+            cout << a << " " << c << '\n';
+            return;
+        }
+        
+        move(n - 1, a, c, b);
+        move(1, a, b, c);
+        move(n - 1, b, a, c);
+    }
+
+    int main() {
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+    
+        int n;
+        cin >> n;
+        cout << (1 << n) - 1 << '\n';
+        move(n, 1, 2, 3);
+        return 0;
+    }
+
+</> Code Python
+    def move(n, a, b, c):
+        if n == 1:
+            print(a, c)
+            return
+        move(n - 1, a, c, b)
+        move(1, a, b, c)
+        move(n - 1, b, a, c)
+
+    n = int(input())
+    print((1 << n) - 1)
+    move(n, 1, 2, 3)
