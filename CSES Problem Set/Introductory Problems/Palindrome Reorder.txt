@@ -42,3 +42,36 @@
         cout << ans;
         return 0;
     }
+
+</> Code Python
+    s = input()
+    m = {}
+    p = ("", 0)
+    odd = 0
+    res = []
+
+    for i in s:
+        if i in m:
+            m[i] += 1
+        else:
+            m[i] = 1
+
+    for c, n in m.items():
+        if n & 1: 
+            odd += 1
+            p = (c, n)
+        else:
+            res.append(c * (n // 2))
+            
+        if odd > 1:
+            print("NO SOLUTION")
+            exit()
+
+    left = ''.join(res)
+    if odd:
+        mid = p[0] * p[1]
+        ans = left + mid + left[::-1]
+    else:
+        ans = left + left[::-1]
+
+    print(ans)
